@@ -1,6 +1,6 @@
 "use client";
 import {useState} from "react";
-import {Bell,CalendarDays,Check,ChevronRight,CircleStop,Download,FileText,Gauge,Inbox,Link2,Mail,MapPin,Pause,Play,Save,Search,ShieldCheck,Sparkles,Upload,UserRound} from "lucide-react";
+import {Bell,CalendarDays,Check,ChevronRight,CircleStop,Download,FileText,Gauge,Inbox,Link2,Mail,MapPin,Pause,Play,Save,Search,Settings2,ShieldCheck,Sparkles,Upload,UserRound} from "lucide-react";
 type View="profile"|"search"|"inbox"|"tracker";
 const jobs=[
  {company:"Abbott",role:"Business Systems Analyst",location:"Chicago, IL",posted:"6h ago",source:"Career portal",match:92,chance:"High",status:"Applied",date:"Today, 9:18 AM",resume:"IT & Analytics · v14",proof:"Confirmation saved"},
