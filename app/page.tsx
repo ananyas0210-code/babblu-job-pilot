@@ -1,5 +1,6 @@
 "use client";
-import {useState} from "react";
+import { useState } from "react";
+import DatabaseProfile from "./DatabaseProfile";
 import {Bell,CalendarDays,Check,ChevronRight,CircleStop,Download,FileText,Gauge,Inbox,Link2,Mail,MapPin,Pause,Play,Save,Search,Settings2,ShieldCheck,Sparkles,Upload,UserRound} from "lucide-react";
 type View="profile"|"search"|"inbox"|"tracker";
 const jobs=[
@@ -20,7 +21,7 @@ export default function Home(){
  <section className="workspace"><header className="topbar"><div><p>PERSONAL JOB PILOT</p><h1>{title}</h1></div><div><button className="icon"><Bell/></button><button className={`engine ${running?"on":""}`} onClick={()=>setRunning(!running)}>{running?<><CircleStop/>Stop engine</>:<><Play/>Start engine</>}</button></div></header>
  <div className="preview"><Sparkles/><div><b>Babblu setup mode</b><span>The workspace is interactive. Connect email, storage and supported job sources before real applications begin.</span></div></div>
  {view==="search"&&<SearchView running={running} toggle={()=>setRunning(!running)} link={link} setLink={setLink} queued={queued} queue={()=>{if(link){setQueued(true);setLink("")}}}/>} 
- {view==="profile"&&<Profile/>}{view==="inbox"&&<InboxView tasks={tasks} done={id=>setTasks(tasks.filter(t=>t.id!==id))}/>} {view==="tracker"&&<Tracker exportCsv={exportCsv}/>}</section></main>
+ {view==="profile"&&<DatabaseProfile/>}{view==="inbox"&&<InboxView tasks={tasks} done={id=>setTasks(tasks.filter(t=>t.id!==id))}/>} {view==="tracker"&&<Tracker exportCsv={exportCsv}/>}</section></main>
 }
 function Nav({icon,label,badge,active,click}:{icon:React.ReactNode,label:string,badge?:number,active:boolean,click:()=>void}){return <button className={`nav ${active?"active":""}`} onClick={click}>{icon}<span>{label}</span>{badge?<b>{badge}</b>:null}</button>}
 function SearchView({running,toggle,link,setLink,queued,queue}:{running:boolean,toggle:()=>void,link:string,setLink:(s:string)=>void,queued:boolean,queue:()=>void}){return <div className="content"><section className="hero"><div><span className={`dot ${running?"running":""}`}/>{running?"ENGINE RUNNING":"ENGINE READY"}<h2>Find early. Tailor truthfully.<br/>Apply with proof.</h2><p>Babblu prioritizes fresh, relevant openings while keeping every resume version and submission visible.</p><div className="actions"><button className="primary" onClick={toggle}>{running?<><Pause/>Pause search</>:<><Play/>Start continuous search</>}</button><button className="secondary"><Settings2/>Edit filters</button></div></div><div className="speed"><span>FRESHNESS TARGET</span><strong>&lt; 24 hours</strong><p>Newest suitable roles enter the queue first.</p><hr/><Mini k="Current mode" v={running?"Applying":"Stopped"}/><Mini k="Salary rule" v="$90K+ preferred"/><small>Lower compensation remains eligible.</small></div></section>
